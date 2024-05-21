@@ -3,5 +3,9 @@
   "builds": [{
     "src": "download.py",
     "use": "@vercel/python"
+  }],
+  "rewrites": [{
+    "source": "/(.*)",
+    "destination": "/download.py"
   }]
 }
