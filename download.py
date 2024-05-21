@@ -13,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
       self.send_response(200)
       self.send_header('Content-type', 'audio/mp3')
       self.end_headers()
-      with open('/tmp/', 'rb') as f:
+      with open('/tmp/output.mp3', 'rb') as f:
         self.wfile.write(f.read())
         return f.close()
     except Exception as e:
