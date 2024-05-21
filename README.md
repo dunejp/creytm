@@ -15,8 +15,8 @@ GET https://creytm.vercel.app/<YT-ID>
 
 ### Latency
 
-| Duration | Latency |
-|:-----:|
-| 1-5 min | 1-3 sec |
-| 5-10 min | 2-5 sec |
-| 10+ min | 3-7+ sec |
+| Duration | Latency | Tested on |
+|:--------:|:-------:|:---------:|
+| 1-7 minutes | 1-3 seconds | Cure For Me // AURORA |
+| 7-10 minutes | 2-5 seconds | All Too Well (10 Minutes Version) // Taylor Swift |
+| 10+ minutes | 4-7+ seconds (prediction) | No test |
