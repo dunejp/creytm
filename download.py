@@ -3,10 +3,11 @@ from http.server import BaseHTTPRequestHandler
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
-    if 'id' not in self.query:
+    query = self.url[1:]
+    if len(query) == 0:
       return end('400 Bad Request: Incomplete Parameter', 400)
     try:
-      video = YouTube('https://youtu.be/' + self.query['id'])
+      video = YouTube('https://youtu.be/' + query)
       stream = video.streams.filter(only_audio=True).first()
       stream.download(filename='output.mp3', output_path='/tmp/')
       self.send_response(200)
