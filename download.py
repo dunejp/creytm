@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
-    query = self.url[1:]
+    query = self.path[1:]
     if len(query) == 0:
       return end('400 Bad Request: Incomplete Parameter', 400)
     try:
