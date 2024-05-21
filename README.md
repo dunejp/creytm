@@ -1,5 +1,5 @@
 ## creytm
-Just a simple and illegal MPEG-3 downloader for YouTube videos. [Try it online](https://creytm.vercel.app/aPnqx56V8-0)
+Just a simple and illegal MPEG-3 downloader for YouTube videos. [Demo](https://creytm.vercel.app/aPnqx56V8-0)
 
 ### Usage
 ```http
