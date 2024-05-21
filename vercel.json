@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "installCommand": "pip install pytube",
   "builds": [{
     "src": "download.py",
     "use": "@vercel/python"
