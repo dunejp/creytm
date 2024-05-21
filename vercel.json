@@ -1,4 +1,8 @@
 {
   "version": 2,
-  "installCommand": "pip install "
+  "installCommand": "pip install pytube-15.0.0-py3-none-any.whl",
+  "builds": [{
+    "src": "download.py",
+    "use": "@vercel/python"
+  }]
 }
