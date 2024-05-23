@@ -4,7 +4,11 @@ from http.server import BaseHTTPRequestHandler
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     if len(self.path) < 2:
-      return end('400 Bad Request: Incomplete Parameter', 400)
+      return self.end('400 Bad Request: Incomplete Parameter', 400)
+    if self.path == "/favicon.ico":
+      self.send_response(302)
+      self.send_header('Location', 'https://m.youtube.com/favicon.ico')
+      return self.end_headers()
     try:
       video = YouTube('https://youtu.be' + self.path)
       stream = video.streams.filter(only_audio=True).first()
@@ -16,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(f.read())
         return f.close()
     except Exception as e:
-      return end('500 Internal Error: ' + str(e), 500)
+      return self.end('500 Internal Error: ' + str(e), 500)
   def end(self, text, status):
     self.send_response(status)
     self.send_header('Content-type', 'text/plain')
