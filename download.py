@@ -31,7 +31,7 @@ class handler(BaseHTTPRequestHandler):
       return self.end_headers()
     try:
       with mock.patch('pytube.cipher.get_throttling_plan', patched_throttling_plan):
-        video = YouTube('https://youtu.be/' + self.path)
+        video = YouTube('https://youtu.be' + self.path)
         stream = video.streams.filter(only_audio=True).first()
         stream.download(filename='output.mp3', output_path='/tmp/')
         self.send_response(200)
