@@ -41,6 +41,10 @@ class handler(BaseHTTPRequestHandler):
           self.wfile.write(f.read())
           return f.close()
     except Exception as e:
+      if('regex_search' in str(e)):
+        return self.end('400 Bad Request: Invalid Parameter', 400)
+      if('unavailable' in str(e)):
+        return self.end('404 Not Found: Unavailable', 404)
       return self.end('500 Internal Error: ' + str(e), 500)
   def end(self, text, status):
     self.send_response(status)
