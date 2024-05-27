@@ -49,12 +49,12 @@ class handler(BaseHTTPRequestHandler):
       self.send_header('Location', 'https://m.youtube.com/favicon.ico')
       return self.end_headers()
     try:
-      path = decode(self.path)
+      path = decode(self.path[1:])
     except:
       return self.end('404 Not Found: Unavailable', 404)
     try:
       with mock.patch('pytube.cipher.get_throttling_plan', patched_throttling_plan):
-        video = YouTube('https://youtu.be' + path)
+        video = YouTube('https://youtu.be/' + path)
         stream = video.streams.filter(only_audio=True).first()
         stream.download(filename='output.mp3', output_path='/tmp/')
         self.send_response(200)
