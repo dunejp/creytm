@@ -1,8 +1,27 @@
 from pytube import YouTube
 from http.server import BaseHTTPRequestHandler
 from pytube.cipher import get_throttling_function_code
-import re
-import mock
+import re, mock, math
+
+def unpair(n):
+  w = math.floor((math.sqrt(8 * n + 1) - 1) / 2)
+  t = (w ** 2 + w) // 2
+  return [w - (n - t), n - t]
+
+def decode(raw):
+  seg = raw.split(".")
+  keys = [int(x) for x in seg[:1][0]]
+  randomized = [int(x) for x in seg[1:]]
+  joints = []
+  for i in keys:
+    joints.append(randomized[i])
+  res = [unpair(x) for x in joints]
+  flat = []
+  for i in res:
+    flat.append(i[0])
+    if i[1] != 0:
+      flat.append(i[1])
+  return ''.join([chr(x) for x in flat])
 
 def patched_throttling_plan(js: str):
   raw_code = get_throttling_function_code(js)
@@ -30,8 +49,12 @@ class handler(BaseHTTPRequestHandler):
       self.send_header('Location', 'https://m.youtube.com/favicon.ico')
       return self.end_headers()
     try:
+      path = decode(self.path)
+    except:
+      return self.end('404 Not Found: Unavailable', 404)
+    try:
       with mock.patch('pytube.cipher.get_throttling_plan', patched_throttling_plan):
-        video = YouTube('https://youtu.be' + self.path)
+        video = YouTube('https://youtu.be' + path)
         stream = video.streams.filter(only_audio=True).first()
         stream.download(filename='output.mp3', output_path='/tmp/')
         self.send_response(200)
