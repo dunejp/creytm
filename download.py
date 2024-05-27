@@ -48,6 +48,7 @@ class handler(BaseHTTPRequestHandler):
       self.send_response(302)
       self.send_header('Location', 'https://m.youtube.com/favicon.ico')
       return self.end_headers()
+    path = None
     try:
       path = decode(self.path[1:])
     except:
