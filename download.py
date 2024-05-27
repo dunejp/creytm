@@ -69,7 +69,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       path = decode(self.path[1:])
     except:
-      return self.end('404 Not Found: Unavailable', 404)
+      return self.end('400 Bad Request: Invalid Parameter', 400)
     try:
       with mock.patch('pytube.cipher.get_throttling_plan', patched_throttling_plan):
         video = YouTube('https://youtu.be/' + path)
