@@ -3,6 +3,23 @@ from http.server import BaseHTTPRequestHandler
 from pytube.cipher import get_throttling_function_code
 import re, mock, math
 
+def get_highest_stream(streams):
+  selected = None
+  highest = 0
+  unfiltered = []
+  for stream in streams:
+    kbps = int(str(stream.abr).replace('kbps', ''))
+    if kbps > highest:
+      highest = kbps
+      selected = stream
+      unfiltered.append(stream)
+  for stream in unfiltered:
+    kbps = int(str(stream.abr).replace('kbps', ''))
+    if kbps > highest:
+      highest = kbps
+      selected = stream
+  return selected
+
 def unpair(n):
   w = math.floor((math.sqrt(8 * n + 1) - 1) / 2)
   t = (w ** 2 + w) // 2
@@ -56,7 +73,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       with mock.patch('pytube.cipher.get_throttling_plan', patched_throttling_plan):
         video = YouTube('https://youtu.be/' + path)
-        stream = video.streams.filter(only_audio=True).first()
+        stream = get_highest_stream(video.streams.filter(only_audio=True))
         stream.download(filename='output.mp3', output_path='/tmp/')
         self.send_response(200)
         self.send_header('Content-type', 'audio/mp3')
