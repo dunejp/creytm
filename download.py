@@ -4,7 +4,7 @@ from pytube.cipher import get_throttling_function_code
 import re, mock, math
 
 def get_output_stream(streams):
-  return streams[math.ceil(len(streams / 2))]
+  return streams[math.ceil(len(streams) / 2)]
 
 def unpair(n):
   w = math.floor((math.sqrt(8 * n + 1) - 1) / 2)
