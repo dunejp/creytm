@@ -50,7 +50,7 @@ class handler(BaseHTTPRequestHandler):
       return self.end_headers()
     path = None
     try:
-      path = decode(self.path[1:])
+      path = decode(self.path.split("/")[0][1:])
     except:
       return self.end('400 Bad Request: Invalid Parameter', 400)
     try:
