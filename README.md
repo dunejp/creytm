@@ -18,7 +18,7 @@ An oversimplified and unauthorized MPEG-3 downloader for YouTube videos. [Try it
 
 ### :scroll: Recommended usage
 
-For downloading audio, it is recommended to **not** use the music videos, visualizers, lyric videos (both official and unofficial).
+For downloading audio, it is **NOT** recommended to use the music videos.
 
 1. Use a video with `- Topic` in its author name
 2. If none, use a video with `(Audio)` or `(Official Audio)` in its title
