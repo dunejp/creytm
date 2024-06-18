@@ -1,5 +1,5 @@
 ## :minidisc: creytm
-An oversimplified and unauthorized MPEG-3 downloader for YouTube videos. [Try it online](https://cloudcre.vercel.app)
+An oversimplified MPEG-3 downloader for YouTube videos without authorization. [Try it online](https://cloudcre.vercel.app)
 
 ## :books: Usage
 ```html
