@@ -1,6 +1,6 @@
 ## :minidisc: creytm
 An oversimplified MPEG-3 downloader for YouTube videos. <br>
-[Try a demo](https://creytm.vercel.app/i_GA5GFAyKE/get%20him%20back%21.mp3)
+[Try a demo](https://creytm.vercel.app/3BFTio5296w/you-got-rickrolled-by-an-api.mp3)
 
 ## :books: Usage
 ```html
