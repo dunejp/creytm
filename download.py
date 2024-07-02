@@ -22,6 +22,7 @@ def patched_throttling_plan(js: str):
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
+    self.send_header('Access-Control-Allow-Origin', '*')
     if len(self.path) < 2:
       return self.end('400 Bad Request: Incomplete Parameter', 400)
     path = None
