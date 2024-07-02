@@ -22,7 +22,6 @@ def patched_throttling_plan(js: str):
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
-    self.send_header('Access-Control-Allow-Origin', '*')
     if len(self.path) < 2:
       return self.end('400 Bad Request: Incomplete Parameter', 400)
     path = None
@@ -37,6 +36,7 @@ class handler(BaseHTTPRequestHandler):
         stream.download(filename='output.mp3', output_path='/tmp/')
         self.send_response(200)
         self.send_header('Content-type', 'audio/mp3')
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
         with open('/tmp/output.mp3', 'rb') as f:
           self.wfile.write(f.read())
@@ -50,5 +50,6 @@ class handler(BaseHTTPRequestHandler):
   def end(self, text, status):
     self.send_response(status)
     self.send_header('Content-type', 'text/plain')
+    self.send_header('Access-Control-Allow-Origin', '*')
     self.end_headers()
     self.wfile.write(text.encode('utf-8'))
