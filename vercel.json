@@ -7,10 +7,5 @@
   "rewrites": [{
     "source": "/(.*)",
     "destination": "/download.py"
-  }],
-  "functions": {
-    "/download.py": {
-      "maxDuration": 60
-    }
-  }
+  }]
 }
