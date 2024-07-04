@@ -46,3 +46,5 @@ If possible, use a video that can be found on `m.youtube.com`.
 | 1-7 minutes | 1-3 seconds |
 | 7-10 minutes | 2-5 seconds |
 | 10+ minutes | 4-7+ seconds (prediction) |
+
+<img src="https://komarev.com/ghpvc/?username=creuserr" alt="" width="0"></img>
