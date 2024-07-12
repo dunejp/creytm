@@ -3,6 +3,7 @@ from http.server import BaseHTTPRequestHandler
 from pytube.cipher import get_throttling_function_code
 import re, mock
 
+"""
 def patched_throttling_plan(js: str):
   raw_code = get_throttling_function_code(js)
   transform_start = r"try{"
@@ -19,6 +20,7 @@ def patched_throttling_plan(js: str):
     else:
       transform_steps.append((match[0],match[1]))
   return transform_steps
+"""
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
@@ -30,17 +32,17 @@ class handler(BaseHTTPRequestHandler):
     except:
       return self.end('400 Bad Request: Invalid Parameter', 400)
     try:
-      with mock.patch('pytube.cipher.get_throttling_plan', patched_throttling_plan):
-        video = YouTube('https://youtu.be/' + path)
-        stream = video.streams.filter(only_audio=True).first()
-        stream.download(filename='output.mp3', output_path='/tmp/')
-        self.send_response(200)
-        self.send_header('Content-type', 'audio/mp3')
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.end_headers()
-        with open('/tmp/output.mp3', 'rb') as f:
-          self.wfile.write(f.read())
-          return f.close()
+      #with mock.patch('pytube.cipher.get_throttling_plan', patched_throttling_plan):
+      video = YouTube('https://youtu.be/' + path)
+      stream = video.streams.filter(only_audio=True).first()
+      stream.download(filename='output.mp3', output_path='/tmp/')
+      self.send_response(200)
+      self.send_header('Content-type', 'audio/mp3')
+      self.send_header('Access-Control-Allow-Origin', '*')
+      self.end_headers()
+      with open('/tmp/output.mp3', 'rb') as f:
+        self.wfile.write(f.read())
+        return f.close()
     except Exception as e:
       if('regex_search' in str(e)):
         return self.end('400 Bad Request: Invalid Parameter', 400)
