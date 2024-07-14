@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> **creytm** has been deprecated due to PyTube's bug.
+> 
+> However, you can use **creytm-piped-v2** as an alternative.
+
 ## :minidisc: creytm
 An oversimplified MPEG-3 downloader for YouTube videos. <br>
 [Try a demo](https://creytm.vercel.app/3BFTio5296w/you-got-rickrolled-by-an-api.mp3)
