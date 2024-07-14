@@ -1,5 +1,6 @@
 from pytube import YouTube
 from http.server import BaseHTTPRequestHandler
+import traceback
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
@@ -26,7 +27,7 @@ class handler(BaseHTTPRequestHandler):
         return self.end('400 Bad Request: Invalid Parameter', 400)
       if('unavailable' in str(e)):
         return self.end('404 Not Found: Unavailable', 404)
-      return self.end('500 Internal Error: ' + str(e), 500)
+      traceback.print_exc()
   def end(self, text, status):
     self.send_response(status)
     self.send_header('Content-type', 'text/plain')
